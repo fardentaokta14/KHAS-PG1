@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kas X PG 1 • Villa</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header class="nav">
+    <div class="brand"><div class="brand-icon">X1</div><div><b>Kas X PG 1</b><small>VILLA • CLASS FINANCE</small></div></div>
+    <button id="adminOpen" class="admin-top">🔐 Admin OKTA</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">KAS KELAS • 2026</span>
+        <h1>Kelola kas kelas<br><span>lebih simpel.</span></h1>
+        <p>Bayar kas, cek status, dan pantau pembayaran kelas X PG 1 dalam satu tempat.</p>
+        <div class="hero-actions"><a href="#bayar" class="btn primary">💳 Bayar Kas</a><a href="#status" class="btn ghost">🔎 Cek Status</a></div>
+      </div>
+      <div class="hero-balance"><div class="mini-label">KAS MINGGUAN</div><strong>Rp5.000</strong><span>per siswa / minggu</span><div class="shine"></div></div>
+    </section>
+
+    <section class="dashboard">
+      <div class="stat"><div class="stat-icon">👥</div><div><small>Total siswa</small><b id="total">26</b></div></div>
+      <div class="stat"><div class="stat-icon green">✓</div><div><small>Sudah bayar</small><b id="paid">0</b></div></div>
+      <div class="stat"><div class="stat-icon yellow">⏳</div><div><small>Menunggu</small><b id="pending">0</b></div></div>
+      <div class="stat"><div class="stat-icon red">!</div><div><small>Belum bayar</small><b id="unpaid">26</b></div></div>
+    </section>
+
+    <section class="grid">
+      <div class="card" id="bayar">
+        <div class="card-head"><div><span class="number">01</span><h2>Bayar Kas</h2><p>Ajukan pembayaran kepada Admin OKTA.</p></div></div>
+        <label>Nama siswa</label>
+        <select id="student"></select>
+        <label>Metode pembayaran</label>
+        <div class="methods"><button class="method active" data-method="QRIS">📱 <b>QRIS</b><small>Scan & bayar</small></button><button class="method" data-method="Cash">💵 <b>Cash</b><small>Bayar langsung</small></button></div>
+        <div id="qris" class="paybox"><div class="fakeqr"><b>QRIS</b><span>GANTI DENGAN QRIS KELAS</span></div><div><b>Scan QRIS</b><p>Setelah membayar, kirim pengajuan dan bukti pembayaran.</p></div></div>
+        <div id="cash" class="paybox hidden"><div class="cash-icon">💵</div><div><b>Pembayaran Cash</b><p>Serahkan Rp5.000 kepada bendahara/admin, kemudian kirim pengajuan.</p></div></div>
+        <label>Catatan <span>(opsional)</span></label><input id="note" maxlength="100" placeholder="Contoh: Kas minggu ke-3">
+        <label>Bukti pembayaran <span>(opsional untuk Cash)</span></label><input id="proof" type="file" accept="image/*">
+        <button id="submit" class="btn primary full">Kirim Pengajuan →</button>
+      </div>
+
+      <div class="card" id="status">
+        <div class="card-head"><div><span class="number">02</span><h2>Cek Status</h2><p>Lihat status pembayaran berdasarkan nama.</p></div></div>
+        <label>Nama siswa</label><select id="statusSelect"></select>
+        <div id="statusBox" class="status-empty">Pilih nama untuk melihat status pembayaran.</div>
+        <div class="info-list"><div><span>Nominal</span><b>Rp5.000</b></div><div><span>Periode</span><b>1 minggu</b></div><div><span>Admin</span><b>OKTA</b></div></div>
+      </div>
+    </section>
+
+    <section class="card members">
+      <div class="card-head row"><div><span class="number">03</span><h2>Daftar Siswa</h2><p>26 siswa X PG 1</p></div><div class="search"><input id="search" placeholder="Cari nama..."> 🔎</div></div>
+      <div id="members"></div>
+    </section>
+    <div class="footer-note">🔒 Data demo tersimpan di browser perangkat ini. Untuk data bersama seluruh siswa secara online, website perlu database/backend.</div>
+  </main>
+</div>
+
+<div id="modal" class="modal hidden"><div class="modal-card">
+<button id="close" class="close">×</button>
+<div id="login">
+<span class="eyebrow">PRIVATE AREA</span><h2>Admin OKTA</h2><p>Masukkan password untuk membuka verifikasi pembayaran.</p>
+<input id="password" type="password" placeholder="Password admin"><button id="loginBtn" class="btn primary full">Masuk Dashboard</button><small id="error" class="error"></small>
+</div>
+<div id="admin" class="hidden">
+<div class="admin-title"><div><span class="eyebrow">ADMIN DASHBOARD</span><h2>Verifikasi Pembayaran</h2></div><button id="logout" class="btn ghost">Keluar</button></div>
+<div id="adminList"></div>
+</div>
+</div></div>
+<div id="toast" class="toast hidden"></div>
+<script src="script.js"></script>
+</body></html>
